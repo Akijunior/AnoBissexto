@@ -10,10 +10,15 @@
                     <img class="imagem-logo-nav responsive-img" src="media/icon-calendar.png" width="180px"
                          height="220px"/>
                 </a>
-                <form method="POST" name="checar">
+
+                {% if ano %}
+                    <p>O ano de {{ ano }} {% if not eBissexto %} não {% endif %} é bissexto</p>
+
+                {% endif %}
                 <h5>Checar se um ano é Bissexto</h5>
+                <form method="POST" name="checar">
                     {% csrf_token %}
-                    <input type="text" class="datepicker" placeholder="Ano que deseja checar">
+                    {% form form=form %}{% endform %}
                     <button class="light-blue darken-4 waves-effect waves-light btn btn-large col s10 offset-s1"
                             type="submit"
                             name="action">
