@@ -2,6 +2,26 @@
 {% block content %}
     {% load material_form %}
 
-    <p>Hello, World!</p>
+    <div class="col s3"></div>
+    <div class="col s6 z-depth-3">
+        <div class="flow-text">
+            <div>
+                <a href="{% url 'home' %}">
+                    <img class="imagem-logo-nav responsive-img" src="media/icon-calendar.png" width="180px"
+                         height="220px"/>
+                </a>
+                <form method="POST" name="checar">
+                <h5>Checar se um ano é Bissexto</h5>
+                    {% csrf_token %}
+                    <input type="text" class="datepicker" placeholder="Ano que deseja checar">
+                    <button class="light-blue darken-4 waves-effect waves-light btn btn-large col s10 offset-s1"
+                            type="submit"
+                            name="action">
+                        Checar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
