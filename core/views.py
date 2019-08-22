@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from core.forms import AnoForm
-from utils.checarAno.checarAno import verSeAnoEBissexto
+from utils.checarAno.checarAno import verSeAnoEBissexto, verAnosBissextosProximosAoAnoDigitado
 
 
 def home(request):
@@ -20,6 +20,11 @@ def home(request):
                 ano = int(request.POST.get('ano'))
                 context['eBissexto'] = verSeAnoEBissexto(ano)
                 context['ano'] = ano
+
+                if (not context['eBissexto']):
+                    anosBissextos = verAnosBissextosProximosAoAnoDigitado(ano)
+                    context['bissextoAnterior'] = anosBissextos[0]
+                    context['bissextoPosterior'] = anosBissextos[1]
 
                 return render(request, 'home.html', context)
 
